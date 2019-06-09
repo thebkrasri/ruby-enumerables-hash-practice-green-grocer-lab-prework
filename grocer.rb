@@ -47,8 +47,12 @@ end
 
 def checkout(cart, coupons)
   # code here
-  due = 0
-  total = cart.reduce{|i| sum + i}
-  discount = coupons.reduce{|i| discount + i}
+  c = consolidate_cart(cart)
+  apply_coupons(c, coupons)
+  apply_clearance(c)
+  total = 0
+  c.each do |k,v| 
+    sum += v[:price] * v[:count] 
+  end
   return total
 end
