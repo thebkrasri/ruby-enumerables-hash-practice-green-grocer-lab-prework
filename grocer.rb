@@ -2,7 +2,7 @@ def consolidate_cart(cart)
   # code here
   c = {}
   cart.each do |key,value|
-    if c.key?(key)
+    if c[key].include?(:count)
       c[key][:count] += 1
     else
       c[key][:count] = 1
