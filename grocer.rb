@@ -16,6 +16,17 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
+  cart.each do |item|  
+    if c.include?(item.keys[0])
+        if c[item.keys[0]].include?(:count)
+          c[item.keys[0]][:count] += 1
+        end
+    else
+      c[item.keys[0]] = item.values[0] 
+      c[item.keys[0]][:count] = 1
+    end
+  end
+  return cart
 end
 
 def apply_clearance(cart)
