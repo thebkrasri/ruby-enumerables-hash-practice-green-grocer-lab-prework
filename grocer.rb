@@ -5,8 +5,7 @@ def consolidate_cart(cart)
     if c.key?(key)
       c[key][:count] += 1
     else
-      c[key] = {
-        count: 1
+      c[key][:count] = 1
       }
     end
   end
