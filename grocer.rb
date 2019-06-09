@@ -20,10 +20,10 @@ def apply_coupons(cart, coupons)
     if cart.include?(coupon[:item]) && cart[coupon[:item]][:count] > coupon[:num]
       cart[coupon[:item]][:count] -= coupon[:num]
       new = coupon[:item] + " W/COUPON"
-      cart[new]={count: coupon[:num], price: coupon[:cost],clearance: cart[coupon[:item]][:clearance]}
+      cart[new]={count: coupon[:num], price: coupon[:cost]/coupon[:num],clearance: cart[coupon[:item]][:clearance]}
     elsif cart.include?(coupon[:item]) && cart[coupon[:item]][:count] == coupon[:num]
       new = coupon[:item] + " W/COUPON"
-      cart[new]={count: coupon[:num], price: coupon[:cost], clearance: cart[coupon[:item]][:clearance]}
+      cart[new]={count: coupon[:num], price: coupon[:cost]/coupon[:num], clearance: cart[coupon[:item]][:clearance]}
        cart.delete(coupon[:item])
     end
   end
