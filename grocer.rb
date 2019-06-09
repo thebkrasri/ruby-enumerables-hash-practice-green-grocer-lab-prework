@@ -23,6 +23,7 @@ def apply_coupons(cart, coupons)
     else if cart.include? (coupon[:item]) && cart[coupon[:item]][:count] == coupon[:num]
       cart[coupon[:item]].remove
       coupon[:item] = coupon[:item] + " W/COUPON"
+    end
   end
   return cart
 end
