@@ -47,8 +47,8 @@ end
 
 def checkout(cart, coupons)
   # code here
-  sum = 0
-  sum = cart.reduce{|i| sum + i}
+  due = 0
+  total = cart.reduce{|i| sum + i}
   discount = coupons.reduce{|i| discount + i}
-  return sum - discount
+  return total
 end
