@@ -17,12 +17,14 @@ end
 def apply_coupons(cart, coupons)
   # code here
   coupons.each do |coupon|  
-    if cart.include? (coupon[:item]) && cart[coupon[:item]][:count] > coupon[:num]
+    if cart.include?(coupon[:item]) && cart[coupon[:item]][:count] > coupon[:num]
       cart[coupon[:item]][:count] -= coupon[:num]
-      coupon[:item] = coupon[:item] + " W/COUPON"
-    else if cart.include? (coupon[:item]) && cart[coupon[:item]][:count] == coupon[:num]
-      cart[coupon[:item]].remove
-      coupon[:item] = coupon[:item] + " W/COUPON"
+      new = coupon[:item] + " W/COUPON"
+      cart[new]={count: coupon[:num], price: coupon[:cost],clearance: cart[coupon[:item]][:clearance]}
+    elsif cart.include?(coupon[:item]) && cart[coupon[:item]][:count] == coupon[:num]
+      new = coupon[:item] + " W/COUPON"
+      cart[new]={count: coupon[:num], price: coupon[:cost], clearance: cart[coupon[:item]][:clearance]}
+       cart.delete(coupon[:item])
     end
   end
   return cart
