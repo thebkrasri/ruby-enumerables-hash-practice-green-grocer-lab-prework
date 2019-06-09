@@ -1,5 +1,16 @@
 def consolidate_cart(cart)
   # code here
+  c = {}
+  cart.each do |key,value|
+    if c.key?(key)
+      c[key][:count] += 1
+    else
+      c[key] = {
+        count: 1
+      }
+    end
+  end
+  return c
 end
 
 def apply_coupons(cart, coupons)
@@ -12,4 +23,8 @@ end
 
 def checkout(cart, coupons)
   # code here
+  sum = 0
+  sum = cart.reduce{|i| sum + i}
+  discount = coupons.reduce{|i| discount + i}
+  return sum - discount
 end
